@@ -45,17 +45,8 @@ void grow()
 {
     max += 10; /* increases the capacity */
 
-    int i;  // for the loop
-    void **tmp = malloc(sizeof(void *) * max);
-
-    /* copies the elements from the origin array in the new one. */
-    for (i = 0; i < max - 10; i++)
-    {
-        *(tmp + i) = *(array + i);
-    }
-    /*free the memory */
-    free(array);
-    array = tmp;
+    array = (void **)realloc(array, sizeof(void *) * max);
+    assert(array); /* tests whether pointer is assigned to memory. */
 }
 
 /* push: pushs the argument onto the stack */
